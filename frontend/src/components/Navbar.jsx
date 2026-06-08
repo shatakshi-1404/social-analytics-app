@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 
 export default function Navbar() {
   const [unreadCount, setUnreadCount] = useState(0);
-  const [live, setLive] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
