@@ -18,14 +18,14 @@ class TopicViewSet(viewsets.ModelViewSet):
     serializer_class = TopicSerializer
 
     @action(detail=True, methods=['post'])
-def refresh(self, request, pk=None):
-    topic = self.get_object()
+    def refresh(self, request, pk=None):
+        topic = self.get_object()
     try:
         fetch_topic_data.delay(topic.id)
     except Exception:
         # Celery not available — run synchronously
         fetch_topic_data(topic.id)
-    return Response({'message': f'Data refresh started for topic: {topic.name}'})
+        return Response({'message': f'Data refresh started for topic: {topic.name}'})
 
     @action(detail=True, methods=['post'])
     def analyze(self, request, pk=None):
