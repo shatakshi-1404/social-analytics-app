@@ -116,8 +116,12 @@ else:
 
 # ── CORS ──────────────────────────────────────────────────
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
-CORS_ALLOWED_ORIGINS = [FRONTEND_URL]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'https://social-analytics-app.onrender.com',
+]
 
+CORS_ALLOW_ALL_ORIGINS = True
 # Auto-add Railway domain if available
 RAILWAY_URL = os.getenv('RAILWAY_STATIC_URL', '')
 if RAILWAY_URL:
